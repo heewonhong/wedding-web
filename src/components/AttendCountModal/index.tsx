@@ -37,7 +37,7 @@ function AttendCountModal({ wedding }: { wedding: Wedding }) {
         }
 
         const updatedWedding = await fetch(
-          'https://67ff4bd658f18d7209f0a126.mockapi.io/api/wedding/1',
+          'https://67ff4bd658f18d7209f0a126.mockapi.io/api/wedding/guests/1',
           {
             method: 'PUT',
             body: JSON.stringify({
