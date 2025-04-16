@@ -35,7 +35,7 @@ function AttendCountModal({ wedding }: { wedding: Wedding }) {
           return
         }
 
-        await fetch('http://localhost:8888/wedding', {
+        await fetch('https://wedding-web-ecru-five.vercel.app', {
           method: 'PUT',
           body: JSON.stringify({
             ...wedding,
