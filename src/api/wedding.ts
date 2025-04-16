@@ -1,3 +1,5 @@
 export function getWedding() {
-  return fetch('https://wedding-web-ecru-five.vercel.app')
+  return fetch(
+    'https://67ff4bd658f18d7209f0a126.mockapi.io/api/wedding/1',
+  ).then((res) => res.json())
 }

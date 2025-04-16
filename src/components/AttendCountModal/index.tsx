@@ -1,6 +1,6 @@
 import { Wedding } from '@models/wedding'
 import { useModalContext } from '@contexts/ModalContext'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function AttendCountModal({ wedding }: { wedding: Wedding }) {
   const { open, close } = useModalContext()
@@ -8,6 +8,7 @@ function AttendCountModal({ wedding }: { wedding: Wedding }) {
   const $input = useRef<HTMLInputElement>(null)
 
   const haveSeenModal = localStorage.getItem('@have-seen-modal')
+  const [currentWedding, setCurrentWedding] = useState(wedding)
 
   useEffect(() => {
     if (haveSeenModal === 'true') {
@@ -15,7 +16,7 @@ function AttendCountModal({ wedding }: { wedding: Wedding }) {
     }
 
     open({
-      title: `현재 참석자: ${wedding.attendCount} 명`,
+      title: `현재 참석자: ${currentWedding.attendCount} 명`,
       body: (
         <div>
           <input
@@ -35,22 +36,27 @@ function AttendCountModal({ wedding }: { wedding: Wedding }) {
           return
         }
 
-        await fetch('https://wedding-web-ecru-five.vercel.app', {
-          method: 'PUT',
-          body: JSON.stringify({
-            ...wedding,
-            attendCount: wedding.attendCount + Number($input.current.value),
-          }),
-          headers: {
-            'Content-Type': 'application/json',
+        const updatedWedding = await fetch(
+          'https://67ff4bd658f18d7209f0a126.mockapi.io/api/wedding/1',
+          {
+            method: 'PUT',
+            body: JSON.stringify({
+              ...currentWedding,
+              attendCount:
+                currentWedding.attendCount + Number($input.current.value),
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
           },
-        })
+        ).then((res) => res.json())
 
+        setCurrentWedding(updatedWedding)
         localStorage.setItem('@have-seen-modal', 'true')
         close()
       },
     })
-  }, [open, close, wedding, haveSeenModal])
+  }, [open, close, currentWedding, haveSeenModal])
 
   return null
 }
