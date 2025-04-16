@@ -1,7 +1,10 @@
 @font-face {
   font-family: 'NanumYeorAHobEuiBanJjagIm';
   src:
-    url('../assets/fonts/NanumYeorAHobEuiBanJjagIm.woff2') format('woff2'),
-    url('../assets/fonts/NanumYeorAHobEuiBanJjagIm.woff') format('woff'),
-    url('../assets/fonts/NanumYeorAHobEuiBanJjagIm.ttf') format('truetype');
+    url('../assets/fonts/subset-NanumYeorAHobEuiBanJjagIm.woff2')
+      format('woff2'),
+    url('../assets/fonts/subset-NanumYeorAHobEuiBanJjagIm.woff') format('woff'),
+    url('../assets/fonts/subset-NanumYeorAHobEuiBanJjagIm.ttf')
+      format('truetype');
+  font-display: fallback;
 }

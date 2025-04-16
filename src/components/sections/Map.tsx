@@ -1,7 +1,7 @@
-import { Location } from '@/models/wedding'
+import { Location } from '@models/wedding'
 import classNames from 'classnames/bind'
 import { useEffect, useRef } from 'react'
-import Section from '../shared/Section'
+import Section from '@shared/Section'
 import styles from './Map.module.scss'
 
 declare global {
@@ -82,8 +82,8 @@ function WayToCome({
     <div className={cx('wrap-waytocome')}>
       <div className={cx('txt-label')}>{label}</div>
       <ul>
-        {list.map((waytocome) => (
-          <li>{waytocome}</li>
+        {list.map((waytocome, index) => (
+          <li key={index}>{waytocome}</li>
         ))}
       </ul>
     </div>
